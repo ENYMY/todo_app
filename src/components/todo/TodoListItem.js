@@ -47,7 +47,7 @@ const TodoListItem = (props) => {
             </Box>
           </Grid>
           <Grid item xs={2}>
-            <Button>Edit</Button>
+            {/* <Button>Edit</Button> */}
             <Button onClick={deleteTodoHandler.bind(this, props.id)}>
               Delete
             </Button>
