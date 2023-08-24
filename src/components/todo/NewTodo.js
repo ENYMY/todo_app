@@ -17,7 +17,7 @@ const NewTodo = (props) => {
   };
 
   const addNewTodoHandler = () => {
-    setEnteredTodo(enteredTodo);
+    props.addNewTodo(enteredTodo);
   };
 
   const clearTodoHandler = () => {

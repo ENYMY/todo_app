@@ -13,7 +13,14 @@ const TodoList = (props) => {
       <Grid xs={12}>
         <Grid spacing={3} container direction='column'>
           {props.todoList.map((todo) => {
-            return <TodoListItem key={todo.id} title={todo.title} />;
+            return (
+              <TodoListItem
+                key={todo.id}
+                title={todo.title}
+                id={todo.id}
+                removeTodo={props.removeTodo}
+              />
+            );
           })}
         </Grid>
       </Grid>

@@ -8,6 +8,10 @@ const TodoListItem = (props) => {
   const doneHandler = (event) => {
     setDone(event.target.checked);
   };
+
+  const deleteTodoHandler = (id) => {
+    props.removeTodo(id);
+  };
   return (
     <Grid item xs={12}>
       <Card
@@ -44,7 +48,9 @@ const TodoListItem = (props) => {
           </Grid>
           <Grid item xs={2}>
             <Button>Edit</Button>
-            <Button>Delete</Button>
+            <Button onClick={deleteTodoHandler.bind(this, props.id)}>
+              Delete
+            </Button>
           </Grid>
         </Grid>
       </Card>
