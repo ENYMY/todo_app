@@ -12,7 +12,7 @@ const TodoListItem = (props) => {
     <Grid item xs={12}>
       <Card
         sx={{
-          width: "900px",
+          width: "950px",
           height: "70px",
           display: "flex",
           flexDirection: "row",
