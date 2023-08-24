@@ -1,4 +1,4 @@
-import { Card, Grid, Checkbox } from "@mui/material";
+import { Card, Grid, Checkbox, Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 
@@ -18,7 +18,7 @@ const TodoListItem = (props) => {
           flexDirection: "row",
           alignItems: "center",
         }}>
-        <Grid spacing={1} container direction='row'>
+        <Grid spacing={1} container direction='row' alignItems='center'>
           <Grid item xs={1}>
             <Box
               sx={{
@@ -32,17 +32,19 @@ const TodoListItem = (props) => {
           <Grid item xs={9}>
             <Box
               sx={{
-                border: "1px solid",
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                alignItems: "center",
               }}>
-              {props.title}{" "}
+              <Typography component={done ? "s" : "p"}>
+                {props.title}
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={2}>
-            {done ? " Action Box" : "!Done"}
+            <Button>Edit</Button>
+            <Button>Delete</Button>
           </Grid>
         </Grid>
       </Card>
