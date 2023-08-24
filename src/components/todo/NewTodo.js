@@ -1,7 +1,28 @@
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
-import React from "react";
-
+import React, { useState } from "react";
+const emptyTodo = { title: "", description: "" };
 const NewTodo = (props) => {
+  const [enteredTodo, setEnteredTodo] = useState(emptyTodo);
+
+  const titleChangeHandler = (event) => {
+    setEnteredTodo((todo) => {
+      return { ...todo, title: event.target.value };
+    });
+  };
+
+  const descriptionChangeHandler = (event) => {
+    setEnteredTodo((todo) => {
+      return { ...todo, description: event.target.value };
+    });
+  };
+
+  const addNewTodoHandler = () => {
+    setEnteredTodo(enteredTodo);
+  };
+
+  const clearTodoHandler = () => {
+    setEnteredTodo(emptyTodo);
+  };
   return (
     <Card>
       <Grid container spacing={2} direction='column' alignItems='center'>
@@ -12,13 +33,21 @@ const NewTodo = (props) => {
           <Typography variant='h4'>
             <Grid container direction='column' spacing={3}>
               <Grid item>
-                <TextField id='title' label='Title' variant='filled' />
+                <TextField
+                  id='title'
+                  label='Title'
+                  variant='filled'
+                  onChange={titleChangeHandler}
+                  value={enteredTodo.title}
+                />
               </Grid>
               <Grid item>
                 <TextField
                   id='description'
                   label='Description'
                   variant='filled'
+                  value={enteredTodo.description}
+                  onChange={descriptionChangeHandler}
                 />
               </Grid>
             </Grid>
@@ -27,10 +56,14 @@ const NewTodo = (props) => {
         <Grid item xs={12} sx={{ margin: "5px" }}>
           <Grid container direction='row' spacing={30}>
             <Grid item xs={6}>
-              <Button variant='outlined'>Clear</Button>
+              <Button variant='outlined' onClick={clearTodoHandler}>
+                Clear
+              </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button variant='outlined'>Add</Button>
+              <Button variant='outlined' onClick={addNewTodoHandler}>
+                Add
+              </Button>
             </Grid>
           </Grid>
         </Grid>
