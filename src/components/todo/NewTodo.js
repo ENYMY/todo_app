@@ -1,7 +1,10 @@
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import todoContext from "../../store/todo-store";
 const emptyTodo = { title: "", description: "" };
 const NewTodo = (props) => {
+  const todoCtx = useContext(todoContext);
+
   const [enteredTodo, setEnteredTodo] = useState(emptyTodo);
 
   const titleChangeHandler = (event) => {
@@ -17,7 +20,7 @@ const NewTodo = (props) => {
   };
 
   const addNewTodoHandler = () => {
-    props.addNewTodo(enteredTodo);
+    todoCtx.addTodo(enteredTodo);
   };
 
   const clearTodoHandler = () => {
@@ -56,12 +59,18 @@ const NewTodo = (props) => {
         <Grid item xs={12} sx={{ margin: "5px" }}>
           <Grid container direction='row' spacing={30}>
             <Grid item xs={6}>
-              <Button variant='outlined' onClick={clearTodoHandler}>
+              <Button
+                variant='outlined'
+                onClick={clearTodoHandler}
+                color='error'>
                 Clear
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button variant='outlined' onClick={addNewTodoHandler}>
+              <Button
+                variant='outlined'
+                onClick={addNewTodoHandler}
+                color='success'>
                 Add
               </Button>
             </Grid>

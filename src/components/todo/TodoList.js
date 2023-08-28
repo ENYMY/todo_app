@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import TodoListItem from "./TodoListItem";
 import { Grid } from "@mui/material";
+import todoContext from "../../store/todo-store";
 
 const TodoList = (props) => {
+  const todoCtx = useContext(todoContext);
+
   return (
     <Grid
       container
@@ -11,13 +14,12 @@ const TodoList = (props) => {
       alignContent='center'>
       <Grid xs={12}>
         <Grid spacing={3} container direction='column'>
-          {props.todoList.map((todo) => {
+          {todoCtx.todos.map((todo) => {
             return (
               <TodoListItem
                 key={todo.id}
                 title={todo.title}
                 id={todo.id}
-                removeTodo={props.removeTodo}
               />
             );
           })}
