@@ -24,8 +24,8 @@ const UIContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(uiReducer, initialState)
     const dispatchActions = uiActions(dispatch);
     const context = {
-        state,
-        dispatchActions
+        state: state,
+        action: dispatchActions
     }
     return <uiContext.Provider value={context}>{children}</uiContext.Provider>
 }
