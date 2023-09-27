@@ -1,0 +1,1 @@
+export const pageStatusLoadKey = "@uiContext/pageStatusLoad"
