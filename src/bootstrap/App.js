@@ -1,12 +1,12 @@
-import "./App.css";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import { Grid } from "@mui/material";
-import TodoList from "./components/todo/TodoList";
-import NewTodo from "./components/todo/NewTodo";
+import TodoList from "../components/todo/TodoList";
+import NewTodo from "../components/todo/NewTodo";
+import { ErrorBoundary } from "../components/ui-elements/common/ErrorBoundary";
 
 const App = () => {
   return (
-    <Grid container direction='column' spacing={2}>
+    <ErrorBoundary><Grid container direction='column' spacing={2}>
       <Grid item xs={12}>
         <Header />
       </Grid>
@@ -20,7 +20,7 @@ const App = () => {
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </Grid></ErrorBoundary>
   );
 };
 

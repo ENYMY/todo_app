@@ -6,7 +6,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "./bootstrap/App";
 import TodoContextProvider from "./store/TodoContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
