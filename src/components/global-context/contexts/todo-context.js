@@ -37,3 +37,7 @@ const TodoContextProvider = ({ children }) => {
     }
     return <TodoContext.Provider value={context}>{children}</TodoContext.Provider>
 }
+export {
+    TodoContext,
+    TodoContextProvider
+}

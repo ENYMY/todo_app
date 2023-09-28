@@ -1,15 +1,15 @@
 import { Fragment } from "react";
 import { isEmpty } from "../../../helper/util.helper";
-import { NoResultsFound } from "./CoreElements";
+import { NoResultsFound, emptyFunction } from "./CoreElements";
 
 const IsEmpty = ({
-  value = null,
+  value = [],
   renderIfEmpty = <NoResultsFound />,
   children = null,
 }) => {
-  return (
-    <Fragment>{isEmpty(value) ? { renderIfEmpty } : { children }}</Fragment>
-  );
+  const content = isEmpty(value) ? renderIfEmpty : children;
+  console.log(content);
+  return <Fragment>{content}</Fragment>;
 };
 
 export { IsEmpty };

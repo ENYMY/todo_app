@@ -1,5 +1,5 @@
+import { TodoContextProvider } from "../components/global-context/contexts/todo-context";
 import { UIContextProvider } from "../components/global-context/contexts/ui-context";
-import TodoContextProvider from "../store/TodoContextProvider";
 
 const ContextProvider = ({ children }) => {
   return (

@@ -10,6 +10,4 @@ const isEmpty = (value) => {
   return false;
 };
 
-export {
-    isEmpty
-}
+export { isEmpty };

@@ -1,10 +1,9 @@
 import { Card, Grid, Checkbox, Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useState } from "react";
-import todoContext from "../../store/todo-store";
 
 const TodoListItem = (props) => {
-  const todoCtx = useContext(todoContext);
+  
 
   const [done, setDone] = useState(false);
 
@@ -13,7 +12,7 @@ const TodoListItem = (props) => {
   };
 
   const deleteTodoHandler = (id) => {
-    todoCtx.deleteTodo(id);
+    // todoCtx.deleteTodo(id);
   };
   return (
     <Grid item xs={12}>

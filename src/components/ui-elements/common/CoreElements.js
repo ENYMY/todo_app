@@ -2,11 +2,12 @@ import { Fragment, useContext } from "react";
 import { IsEmpty } from "./utilElements";
 import { CircularProgress } from "@mui/material";
 import { uiContext } from "../../global-context/contexts/ui-context";
+import { isEmpty } from "../../../helper/util.helper";
 
 const emptyFunction = (...param) => {};
 
 const NoResultsFound = () => {
-  return <div>No Elements Found</div>;
+  return <div>No Todos Found</div>;
 };
 
 const LoopItems = ({
@@ -19,7 +20,9 @@ const LoopItems = ({
     <ul className={wrapperStyle}>
       <IsEmpty value={items} renderIfEmpty={renderIfEmpty}>
         <Fragment>
-          {items.map((item, index) => renderItem(item, index))}
+          {!isEmpty(items)
+            ? items.map((item, index) => renderItem(item, index))
+            : null}
         </Fragment>
       </IsEmpty>
     </ul>

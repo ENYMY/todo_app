@@ -1,9 +1,12 @@
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
-import todoContext from "../../store/todo-store";
+import TextInput from "../../../ui-elements/form/TextInput";
+import ButtonBasic from "../../../ui-elements/form/ButtonBasic";
+import { TodoContext } from "../../../global-context/contexts/todo-context";
+import { isEmpty } from "../../../../helper/util.helper";
 const emptyTodo = { title: "", description: "" };
 const NewTodo = (props) => {
-  const todoCtx = useContext(todoContext);
+  const { state, action } = useContext(TodoContext);
 
   const [enteredTodo, setEnteredTodo] = useState(emptyTodo);
 
@@ -18,61 +21,66 @@ const NewTodo = (props) => {
       return { ...todo, description: event.target.value };
     });
   };
-
-  const addNewTodoHandler = () => {
-    todoCtx.addTodo(enteredTodo);
-  };
-
   const clearTodoHandler = () => {
     setEnteredTodo(emptyTodo);
   };
+
+  const addNewTodoHandler = () => {
+    if (isEmpty(enteredTodo.title) || isEmpty(enteredTodo.description)) {
+      return alert("NO empty values accepted");
+    }
+    const newTodoList = [...state.todoList, enteredTodo];
+    action.addTodoItem(newTodoList);
+    clearTodoHandler();
+  };
+
   return (
     <Card>
-      <Grid container spacing={2} direction='column' alignItems='center'>
+      <Grid container spacing={2} direction="column" alignItems="center">
         <Grid item xs={10}>
-          <Typography variant='h4'>Add Todo</Typography>
+          <Typography variant="h4">Add Todo</Typography>
         </Grid>
         <Grid item xs={10}>
-          <Typography variant='h4'>
-            <Grid container direction='column' spacing={3}>
+          <Typography variant="h4">
+            <Grid container direction="column" spacing={3}>
               <Grid item>
-                <TextField
-                  id='title'
-                  label='Title'
-                  variant='filled'
-                  onChange={titleChangeHandler}
+                <TextInput
+                  id="title"
+                  label="Title"
+                  variant="filled"
+                  onTextChange={titleChangeHandler}
                   value={enteredTodo.title}
                 />
               </Grid>
               <Grid item>
-                <TextField
-                  id='description'
-                  label='Description'
-                  variant='filled'
+                <TextInput
+                  id="description"
+                  label="Description"
+                  variant="filled"
                   value={enteredTodo.description}
-                  onChange={descriptionChangeHandler}
+                  onTextChange={descriptionChangeHandler}
                 />
               </Grid>
             </Grid>
           </Typography>
         </Grid>
         <Grid item xs={12} sx={{ margin: "5px" }}>
-          <Grid container direction='row' spacing={30}>
+          <Grid container direction="row" spacing={30}>
             <Grid item xs={6}>
-              <Button
-                variant='outlined'
-                onClick={clearTodoHandler}
-                color='error'>
-                Clear
-              </Button>
+              <ButtonBasic
+                variant="outlined"
+                onBtnClick={clearTodoHandler}
+                color="error"
+                label="Clear"
+              />
             </Grid>
             <Grid item xs={6}>
-              <Button
-                variant='outlined'
-                onClick={addNewTodoHandler}
-                color='success'>
-                Add
-              </Button>
+              <ButtonBasic
+                variant="outlined"
+                onBtnClick={addNewTodoHandler}
+                color="success"
+                label="Add"
+              />
             </Grid>
           </Grid>
         </Grid>
