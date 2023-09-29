@@ -4,9 +4,12 @@ import Header from "../../Header";
 import NewTodo from "./include/NewTodo";
 import TodoList from "./include/TodoList";
 import { TodoContext } from "../../global-context/contexts/todo-context";
+import { uiContext } from "../../global-context/contexts/ui-context";
+import { SpinWraper } from "../../ui-elements/common/CoreElements";
 
 const TodoPage = () => {
   const { action } = useContext(TodoContext);
+  const { state: uiState } = useContext(uiContext);
   useEffect(() => {
     action.requestTodoListItem();
   }, []);
@@ -21,7 +24,13 @@ const TodoPage = () => {
             <NewTodo />
           </Grid>
           <Grid item xs={8}>
-            <TodoList />
+            {uiState.isLoad ? (
+              <>
+                <SpinWraper />
+              </>
+            ) : (
+              <TodoList />
+            )}
           </Grid>
         </Grid>
       </Grid>

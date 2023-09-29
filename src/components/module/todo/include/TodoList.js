@@ -18,11 +18,11 @@ const TodoList = (props) => {
         <Grid spacing={3} container direction="column">
           <LoopItems
             items={todoCtx.state.todoList}
-            // renderItem={(item, index) => {
-            //   return (
-            //     <TodoListItem key={item.id} title={item.title} id={item.id} />
-            //   );
-            // }}
+            renderItem={(item, index) => {
+              return (
+                <TodoListItem key={item.id} title={item.title} id={item.id} />
+              );
+            }}
           />
         </Grid>
       </Grid>

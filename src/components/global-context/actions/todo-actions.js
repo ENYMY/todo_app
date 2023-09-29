@@ -11,8 +11,17 @@ const requestTodoListItem = async (dispatch, uiActions) => {
     uiActions.setPageLoader(true);
     const responseData = await httpRequest(apiURL);
     uiActions.setPageLoader(false);
-    // console.log(responseData)
-    dispatch({ type: requestTodoListDataKey, payload: responseData });
+    // console.log(Object.values(responseData));
+    const transformedTodos = [];
+    for (const key in responseData) {
+      const todo = {
+        id: key,
+        ...responseData[key],
+      };
+      transformedTodos.push(todo);
+    }
+
+    dispatch({ type: requestTodoListDataKey, payload: transformedTodos });
   } catch (ex) {
     uiActions.setPageLoader(false);
     console.error("Error", ex);
@@ -26,7 +35,7 @@ const requestTodoListItem = async (dispatch, uiActions) => {
 const addTodoItem = async (dispatch, body, uiActions) => {
   try {
     uiActions.setPageLoader(true);
-    const responseData = await httpRequest(apiURL, "POST", body);
+    await httpRequest(apiURL, "POST", body);
     uiActions.setPageLoader(false);
     dispatch({
       type: refreshTodoListDataKey,

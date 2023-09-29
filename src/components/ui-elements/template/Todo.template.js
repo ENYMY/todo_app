@@ -1,13 +1,8 @@
 import React from "react";
-import { FullPageLoader } from "../common/CoreElements";
+// import { FullPageLoader } from "../common/CoreElements";
 
 function TodoTemplate({ children = null }) {
-  return (
-    <div className="template-wrapper">
-      {children}
-      <FullPageLoader />
-    </div>
-  );
+  return <div className="template-wrapper">{children}</div>;
 }
 
 export default TodoTemplate;

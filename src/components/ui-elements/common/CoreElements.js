@@ -33,8 +33,8 @@ const SpinWraper = ({ color = "inherit" }) => {
   return <CircularProgress color={color} />;
 };
 
-const FullPageLoader = () => {
-  const uiState = useContext(uiContext);
-  return <Fragment>{uiState.state.isLoad ? <SpinWraper /> : null}</Fragment>;
-};
-export { NoResultsFound, LoopItems, emptyFunction, FullPageLoader };
+// const FullPageLoader = () => {
+//   const uiState = useContext(uiContext);
+//   return <Fragment>{uiState.state.isLoad ? <SpinWraper /> : null}</Fragment>;
+// };
+export { NoResultsFound, LoopItems, emptyFunction, SpinWraper };

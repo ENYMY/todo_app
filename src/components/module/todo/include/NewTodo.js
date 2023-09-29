@@ -29,8 +29,9 @@ const NewTodo = (props) => {
     if (isEmpty(enteredTodo.title) || isEmpty(enteredTodo.description)) {
       return alert("NO empty values accepted");
     }
-    const newTodoList = [...state.todoList, enteredTodo];
-    action.addTodoItem(newTodoList);
+    // const newTodoList = { ...state.todoList, ...enteredTodo };
+    // console.log(newTodoList);
+    action.addTodoItem({ ...enteredTodo });
     clearTodoHandler();
   };
 

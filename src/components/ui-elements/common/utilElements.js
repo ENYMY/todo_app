@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { isEmpty } from "../../../helper/util.helper";
-import { NoResultsFound, emptyFunction } from "./CoreElements";
+import { NoResultsFound } from "./CoreElements";
 
 const IsEmpty = ({
   value = [],
@@ -8,7 +8,6 @@ const IsEmpty = ({
   children = null,
 }) => {
   const content = isEmpty(value) ? renderIfEmpty : children;
-  console.log(content);
   return <Fragment>{content}</Fragment>;
 };
 
