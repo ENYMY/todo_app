@@ -1,9 +1,10 @@
 import { Card, Grid, Checkbox, Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useState } from "react";
+import { TodoContext } from "../../../global-context/contexts/todo-context";
 
 const TodoListItem = (props) => {
-  
+  const { action } = useContext(TodoContext);
 
   const [done, setDone] = useState(false);
 
@@ -12,7 +13,8 @@ const TodoListItem = (props) => {
   };
 
   const deleteTodoHandler = (id) => {
-    // todoCtx.deleteTodo(id);
+    // console.log(id);
+    action.removeTodoItem(id);
   };
   return (
     <Grid item xs={12}>
@@ -23,15 +25,17 @@ const TodoListItem = (props) => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-        }}>
-        <Grid spacing={1} container direction='row' alignItems='center'>
+        }}
+      >
+        <Grid spacing={1} container direction="row" alignItems="center">
           <Grid item xs={1}>
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Checkbox onChange={doneHandler} value={done} />
             </Box>
           </Grid>
@@ -42,7 +46,8 @@ const TodoListItem = (props) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Typography component={done ? "s" : "p"}>
                 {props.title}
               </Typography>

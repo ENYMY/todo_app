@@ -8,11 +8,17 @@ import { uiContext } from "../../global-context/contexts/ui-context";
 import { SpinWraper } from "../../ui-elements/common/CoreElements";
 
 const TodoPage = () => {
-  const { action } = useContext(TodoContext);
+  const { state: todoState, action } = useContext(TodoContext);
   const { state: uiState } = useContext(uiContext);
+
+  const { refreshTodoList: refresh } = todoState;
   useEffect(() => {
     action.requestTodoListItem();
   }, []);
+
+  useEffect(() => {
+    action.requestTodoListItem();
+  }, [refresh]);
   return (
     <Grid container direction="column" spacing={2}>
       <Grid item xs={12}>

@@ -2,7 +2,7 @@ import {
   refreshTodoListDataKey,
   requestTodoListDataKey,
 } from "../../../configs/action-config";
-import { apiURL } from "../../../configs/api-endpoints";
+import { apiURL, baseURL } from "../../../configs/api-endpoints";
 import { httpRequest } from "../../../helper/http.helper";
 
 const requestTodoListItem = async (dispatch, uiActions) => {
@@ -53,12 +53,23 @@ const addTodoItem = async (dispatch, body, uiActions) => {
 //         uiActions.setPageLoader(false);
 //     }
 // }
-// const removeTodoItem = () => {}
+const removeTodoItem = async (dispatch, id, uiActions) => {
+  try {
+    uiActions.setPageLoader(true);
+    const data = await httpRequest(`${baseURL}/todos/${id}.json`, "DELETE");
+    uiActions.setPageLoader(false);
+    dispatch({ type: refreshTodoListDataKey });
+  } catch (ex) {
+    uiActions.setPageLoader(false);
+    console.log("Error: Delete ", ex);
+  }
+};
 
 const todoActions = (dispatch, uiActions) => {
   return {
     requestTodoListItem: () => requestTodoListItem(dispatch, uiActions),
     addTodoItem: (body) => addTodoItem(dispatch, body, uiActions),
+    removeTodoItem: (id) => removeTodoItem(dispatch, id, uiActions),
   };
 };
 export { todoActions };

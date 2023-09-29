@@ -15,12 +15,12 @@ const TodoList = (props) => {
       alignContent="center"
     >
       <Grid xs={12}>
-        <Grid spacing={3} container direction="column">
+        <Grid spacing={2} container direction="column">
           <LoopItems
             items={todoCtx.state.todoList}
             renderItem={(item, index) => {
               return (
-                <TodoListItem key={item.id} title={item.title} id={item.id} />
+                <TodoListItem key={index} title={item.title} id={item.id} />
               );
             }}
           />
